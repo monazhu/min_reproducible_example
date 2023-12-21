@@ -1,0 +1,46 @@
+---
+title: "min_reproducible_example"
+format:
+  html:
+    code-fold: true
+---
+
+```{r}
+# Set up
+library(reticulate)
+use_condaenv("531", required = TRUE)
+```
+
+## altair
+
+```{python}
+import altair as alt
+import pandas as pd
+cars = pd.read_csv('data/cars.csv')
+
+# chart
+alt.Chart(cars).mark_point().encode(
+  # mark points creates circles
+  x = "Miles_per_Gallon",
+  y = "Horsepower",
+  color = "Cylinders",
+  tooltip = "Name"
+)
+```
+
+
+## ggplot
+
+```{r}
+library(tidyverse)
+cars_df <- read.csv("data/cars.csv")
+
+cars_df|> ggplot(aes(x = Miles_per_Gallon,
+                 y = Horsepower,
+                 colour = Cylinders)) +
+  geom_point()
+
+```
+
+
+
